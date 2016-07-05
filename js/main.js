@@ -38,7 +38,7 @@ function chromeDevTool(ifrDoc){
         var chromeDiv = document.getElementById('chromeres');
         var chromeres = document.createElement("div");
         chromeres.setAttribute("id", "chromeres");
-        chromeres.appendChild( buildHtmlTable( audit ,'Chrome Accessibility Plugin' ) );
+        chromeres.appendChild( buildHtmlTable( audit ,'Chrome Accessibility Plugin','yes') );
         chromeDiv.parentNode.replaceChild(chromeres, chromeDiv);
 }
 
@@ -55,7 +55,7 @@ function axeTool(ifrDoc){
         var axeDiv = document.getElementById('axeres');
         var axeres = document.createElement("div");
         axeres.setAttribute("id", "axeres");
-        axeres.appendChild( buildHtmlTable( results.violations ,'Axe validator from Deque' ) );
+        axeres.appendChild( buildHtmlTable( results.violations ,'Axe validator from Deque','no' ) );
         axeDiv.parentNode.replaceChild(axeres, axeDiv);
         // window.stop();        
     });
@@ -155,7 +155,7 @@ function htmlcsTool(ifrDoc, options){
         } catch (e) {
             console.log('Error:', e.toString());
         }     
-        htmlcsres.appendChild(buildHtmlTable(content , 'HTML CodeSniffer  from SquizLabs' ) );
+        htmlcsres.appendChild(buildHtmlTable(content , 'HTML CodeSniffer  from SquizLabs','yes' ) );
         htmlcsDiv.parentNode.replaceChild(htmlcsres, htmlcsDiv);
         window.stop();
     });

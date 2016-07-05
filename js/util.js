@@ -7,10 +7,10 @@ _td_ = document.createElement('td');
  _td_.setAttribute('scope','row');
 
 // Builds the HTML Table out of myList json data from Ivy restful service.
-function buildHtmlTable(arr , captionTxt) {
+function buildHtmlTable(arr , captionTxt ,sort) {
 
  var table = _table_.cloneNode(false);
- table.setAttribute("class", "sortable");
+ if(sort==='yes') table.setAttribute("class", "sortable");
  var caption = document.createElement('caption');
  caption.appendChild(document.createTextNode(captionTxt || ''));
  table.appendChild(caption);
@@ -33,7 +33,7 @@ function buildHtmlTable(arr , captionTxt) {
      tbody.appendChild(tr);
      table.appendChild(tbody);
  }
- sorttable.makeSortable(table);
+ if(sort==='yes') sorttable.makeSortable(table);
  return table;
 }
 
