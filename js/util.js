@@ -15,7 +15,9 @@ function buildHtmlTable(arr , captionTxt) {
  caption.appendChild(document.createTextNode(captionTxt || ''));
  table.appendChild(caption);
 
- var columns = addAllColumnHeaders(arr, table);
+ var thead = document.createElement('thead');
+ var columns = addAllColumnHeaders(arr, table, thead);
+ var tbody = document.createElement('tbody');
 
  for (var i=0, maxi=arr.length; i < maxi; ++i) {
      var tr = _tr_.cloneNode(false);
@@ -28,15 +30,17 @@ function buildHtmlTable(arr , captionTxt) {
                 tr.appendChild(td);
             }
      }
-     table.appendChild(tr);
+     tbody.appendChild(tr);
+     table.appendChild(tbody);
  }
+ sorttable.makeSortable(table);
  return table;
 }
 
 // Adds a header row to the table and returns the set of columns.
 // Need to do union of keys from all records as some records may not contain
 // all records
-function addAllColumnHeaders(arr, table)
+function addAllColumnHeaders(arr, table, thead)
 {
  var columnSet = [],
      tr = _tr_.cloneNode(false);
@@ -46,11 +50,13 @@ function addAllColumnHeaders(arr, table)
              columnSet.push(key);
              var th = _th_.cloneNode(false);
              th.appendChild(document.createTextNode(key));
+             th.setAttribute('class','header');
              tr.appendChild(th);
          }
      }
  }
- table.appendChild(tr);
+ thead.appendChild(tr);
+ table.appendChild(thead);
  return columnSet;
 }
 //Break the code snippet into multiple lines.
