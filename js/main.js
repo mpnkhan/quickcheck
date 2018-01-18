@@ -5,6 +5,7 @@ function chromeDevTool(ifrDoc){
         configuration.showUnsupportedRulesWarning = false;
         configuration.scope = ifrDoc.body;
         var results = axs.Audit.run(configuration);
+        // console.log(ifrDoc.body, results);
         var audit = results.map(function (result) {
             var DOMElements = result.elements;
             var message = '';
@@ -30,6 +31,7 @@ function chromeDevTool(ifrDoc){
                     elements: message
                 };
             }   //Return Failures only
+
         });
         // var report =  axs.Audit.createReport(results);
         for (var i=audit.length;i--;){
